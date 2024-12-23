@@ -1,6 +1,7 @@
 const typingForm = document.querySelector(".typing-form");
 const chatList = document.querySelector(".chat-list");
 const toggleThemeButton = document.querySelector("#toggle-theme-button");
+const deleteChatButton = document.querySelector("#delete-chat-button");
 
 let userMessage = null;
 const API_KEY = "AIzaSyCxONAPr8ZhfZtJ95eSHJ0IOaJGPSx5mkw";
@@ -129,6 +130,13 @@ toggleThemeButton.addEventListener("click", () => {
     const isLightMode = document.body.classList.toggle("light_mode");
     localStorage.setItem("themeColor", isLightMode ? "light_mode" : "dark_mode");
     toggleThemeButton.innerText = isLightMode ? "dark_mode" : "light_mode";
+});
+
+deleteChatButton.addEventListener("click", () => {
+    if(confirm("Are you sure you want to delete all the messages?")){
+        localStorage.removeItem("savedChats");
+        loadLocalstorageData();
+    }
 });
 
 typingForm.addEventListener("submit", (e) => {
