@@ -7,7 +7,7 @@ const deleteChatButton = document.querySelector("#delete-chat-button");
 let userMessage = null;
 let isResponseGenerating = false;
 
-const API_KEY = "AIzaSyCxONAPr8ZhfZtJ95eSHJ0IOaJGPSx5mkw";
+const API_KEY = "";
 const API_URL = ``;
 
 const loadLocalstorageData = () => {
