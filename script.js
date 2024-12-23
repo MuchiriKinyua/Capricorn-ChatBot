@@ -5,6 +5,8 @@ const toggleThemeButton = document.querySelector("#toggle-theme-button");
 const deleteChatButton = document.querySelector("#delete-chat-button");
 
 let userMessage = null;
+let isResponseGenerating = false;
+
 const API_KEY = "AIzaSyCxONAPr8ZhfZtJ95eSHJ0IOaJGPSx5mkw";
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`;
 
@@ -42,10 +44,13 @@ const generativeAPIResponse = async (incomingMessageDiv) => {
             })
         });
         const data = await response.json();
+        if(!response.ok) throw new Error(data.error.message);
         const apiResponse = data?.candidates[0].content.parts[0].text.replace(/\*\*(.*?)\*\*/g, '$1');
         showTypingEffect(apiResponse, textElement, incomingMessageDiv);
-    } catch (error) {   
-        console.log(error);
+    } catch (error) {
+        isResponseGenerating = false;
+        textElement.innerText = error.message;
+        textElement.classList.add("error");
     } finally {
         incomingMessageDiv.classList.remove("loading");
     }
@@ -60,7 +65,9 @@ const copyMessage = (copyIcon) => {
 
 const handleOutgoingChat = () => {
     userMessage = typingForm.querySelector(".typing-input").value.trim() || userMessage;
-    if (!userMessage) return;
+    if (!userMessage || isResponseGenerating) return;
+
+    isResponseGenerating = true;
 
     const html = `<div class="message-content">
                     <img src="images.jpeg" alt="User Image" class="avatar">
@@ -97,6 +104,7 @@ const showTypingEffect = (text, textElement, incomingMessageDiv) => {
 
         if (currentWordIndex === words.length) {
             clearInterval(typingInterval);
+            isResponseGenerating = false;
             incomingMessageDiv.querySelector(".icon").classList.remove("hide");
             localStorage.setItem("savedChats", chatList.innerHTML);
         }
