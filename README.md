@@ -21,8 +21,7 @@ Capricorn ChatBot is an intelligent conversational agent designed to provide eng
 ## Installation </br>
 
     Clone the repository: 
-
-git clone https://github.com/MuchiriKinyua/capricorn-chatbot.git 
+    git clone https://github.com/MuchiriKinyua/capricorn-chatbot.git 
 
 ## Navigate to the project directory: </br>
 
