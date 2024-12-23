@@ -1,5 +1,6 @@
 const typingForm = document.querySelector(".typing-form");
 const chatList = document.querySelector(".chat-list");
+const suggestions = document.querySelectorAll(".suggestion-list .suggestion");
 const toggleThemeButton = document.querySelector("#toggle-theme-button");
 const deleteChatButton = document.querySelector("#delete-chat-button");
 
@@ -14,6 +15,7 @@ const loadLocalstorageData = () => {
     toggleThemeButton.innerText = isLightMode ? "dark_mode" : "light_mode";
 
     chatList.innerHTML = savedChats || "";
+    document.body.classList.toggle("hide-header", savedChats);
     chatList.scrollTo(0, chatList.scrollHeight);
 }
 
@@ -57,7 +59,7 @@ const copyMessage = (copyIcon) => {
 }
 
 const handleOutgoingChat = () => {
-    userMessage = typingForm.querySelector(".typing-input").value.trim();
+    userMessage = typingForm.querySelector(".typing-input").value.trim() || userMessage;
     if (!userMessage) return;
 
     const html = `<div class="message-content">
@@ -69,6 +71,7 @@ const handleOutgoingChat = () => {
     chatList.appendChild(outgoingMessageDiv);
 
     typingForm.reset();
+    document.body.classList.add("hide-header");
     setTimeout(() => {
         chatList.scrollTo({
             top: chatList.scrollHeight,
@@ -125,6 +128,13 @@ const showLoadingAnimation = () => {
 
     generativeAPIResponse(incomingMessageDiv);
 };
+
+suggestions.forEach(suggestion => {
+    suggestion.addEventListener("click", () => {
+        userMessage = suggestion.querySelector(".text").innerText;
+        handleOutgoingChat();
+    });
+});
 
 toggleThemeButton.addEventListener("click", () => {
     const isLightMode = document.body.classList.toggle("light_mode");
