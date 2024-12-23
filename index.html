@@ -4,9 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Capricorn ChatBot</title>
+    <!-- Corrected Material Symbols Rounded link -->
+    <link rel="stylesheet" 
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <header class="header">
+        <!-- header greetings -->
+        <h2 class="title">Hello, there</h2>
+        <h4 class="subtitle">How can I help you today?</h4>
+
+        <!-- suggestion-list -->
+        <ul class="suggestion-list">
+            <li class="suggestion">
+                <h4 class="text">Write an essay about the pyramids of Egypt under 1000 words</h4>
+                <span class="icon material-symbols-rounded">
+                    description
+                </span>
+            </li>
+            <li class="suggestion">
+                <h4 class="text">Am Having a graduation party next week, how do I need to prepare?</h4>
+                <span class="icon material-symbols-rounded">
+                    event
+                </span>
+            </li>
+            <li class="suggestion">
+                <h4 class="text">Give me a quick 10 random questions fire trivia</h4>
+                <span class="icon material-symbols-rounded">
+                    quiz
+                </span>
+            </li>
+            <li class="suggestion">
+                <h4 class="text">How is the situation in Ukraine materializing?</h4>
+                <span class="icon material-symbols-rounded">
+                    public
+                </span>
+            </li>
+        </ul>
+    </header>
+    <div class="typing-area">
+        <form action="#" class="typing-form">
+            <div class="input-wrapper">
+                <input type="text" placeholder="Enter a prompt here" class="typing-input" required>
+                <button class="icon material-symbols-rounded">
+                    send
+                </button>
+            </div>
+            <div class="action-butttons">
+                <span class="icon material-symbols-rounded">
+                    light_mode
+                </span>
+                <span class="icon material-symbols-rounded">
+                    delete
+                </span>
+            </div>
+        </form>
+        <p class="disclaimer-text">
+            Capricorn can make mistakes. Double-check responses.
+        </p>
+    </div>
 </body>
 </html>
