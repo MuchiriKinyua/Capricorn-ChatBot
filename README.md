@@ -32,8 +32,7 @@ Capricorn ChatBot is an intelligent conversational agent designed to provide eng
 ## Configuration </br>
 
     API Key: Replace the placeholder API_KEY in the JavaScript file with your actual Google API key:
-
-const API_KEY = "YOUR_GOOGLE_API_KEY";
+    const API_KEY = "YOUR_GOOGLE_API_KEY";
 
 Generative API URL: Ensure the API URL points to the appropriate endpoint:
 
