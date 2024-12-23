@@ -49,14 +49,14 @@ Generative API URL: Ensure the API URL points to the appropriate endpoint:
  
 # File Structure </br>
 
-Capricorn ChatBot/ 
-├── index.html         # Main HTML file 
-├── style.css          # Stylesheet for the chatbot 
-├── script.js          # Core JavaScript functionality
-├── images/            # Avatar and other images
-│   ├── images.jpeg    # User avatar 
-│   ├── capricorn.png  # AI avatar 
-├── README.md          # Project documentation 
+Capricorn ChatBot/ </br>
+├── index.html         # Main HTML file </br>
+├── style.css          # Stylesheet for the chatbot </br>
+├── script.js          # Core JavaScript functionality </br>
+├── images/            # Avatar and other images </br>
+│   ├── images.jpeg    # User avatar </br>
+│   ├── capricorn.png  # AI avatar </br>
+├── README.md          # Project documentation  </br>
 
 # Customization </br>
 
