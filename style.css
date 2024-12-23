@@ -87,6 +87,9 @@ body{
     width: 100%;
     align-items: center;
 }
+.chat-list .message.loading .text{
+    display: none;
+}
 .chat-list{
     padding: 2rem 1rem 12rem;
     max-height: 100vh;
@@ -101,6 +104,14 @@ body{
     object-fit: cover;
     border-radius: 50%;
     align-self: flex-start;
+}
+.chat-list .message.loading .avatar{
+    animation: rotate 3s linear infinite;
+}
+@keyframes rotate{
+    100% {
+        transform: rotate(360deg);
+    }
 }
 .chat-list .message .text{
     color: var(--text-color);
@@ -118,11 +129,35 @@ body{
     color: var(--text-color);
     visibility: hidden;
 }
-.chat-list .message:hover .icon{
+.chat-list .message:not(.loading):hover .icon{
     visibility: visible;
 }
 .chat-list .message .icon:hover{
     background: var(--secondary-color);
+}
+.chat-list .loading-indicator{
+    display: flex;
+    width: 100%;
+    gap: 0.8rem;
+    flex-direction: column;
+}
+.chat-list .loading-indicator .loading-bar{
+    height: 11px;
+    width: 100%;
+    border-radius: 0.14rem;
+    animation: animate 3s linear infinite;
+    background: linear-gradient(to right, #4285f4, var(--primary-color), #4285f4);
+}
+.chat-list .loading-indicator .loading-bar:last-child{
+    width: 70%;
+}
+@keyframes animate{
+    0% {
+        background-position: -800px 0;
+    }
+    100% {
+        background-position: 800px 0;
+    }
 }
 .typing-area{
     position: fixed;
