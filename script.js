@@ -12,6 +12,19 @@ const createMessageElement = (content, ...classes) => {
     return div;
 }
 
+const showTypingEffect = (text, textElement) => {
+    const words = text.split(' ');
+    let currentWordIndex = 0;
+
+    const typingInterval = setInterval(() => {
+        textElement.innerText += (currentWordIndex === 0 ? '' : ' ') + words[currentWordIndex++];
+
+    if(currentWordIndex === words.length){
+        clearInterval(typingInterval);
+    }
+    }, 75);
+}
+
 const generativeAPIResponse = async (incomingMessageDiv) => {
     const textElement = incomingMessageDiv.querySelector(".text");
     try {
@@ -27,7 +40,7 @@ const generativeAPIResponse = async (incomingMessageDiv) => {
         });
         const data = await response.json();
         const apiResponse = data?.candidates[0].content.parts[0].text;
-        textElement.innerText = apiResponse;
+        showTypingEffect(apiResponse, textElement);
     } catch (error) {   
         console.log(error);
     } finally {
@@ -45,7 +58,7 @@ const showLoadingAnimation = () => {
                         <div class="loading-bar"></div>
                     </div>
                 </div>
-                <span class="icon material-symbols-rounded">
+                <span onclick = "copyMessage(this) "class="icon material-symbols-rounded">
                     content_copy
                 </span>`;    
 
@@ -53,6 +66,13 @@ const showLoadingAnimation = () => {
     chatList.appendChild(incomingMessageDiv);
 
     generativeAPIResponse(incomingMessageDiv);
+}
+
+const copyMessage = (copyIcon) => {
+    const messageText = copyIcon.parentElement.querySelector(".text").innerText;
+    navigator.clipboard.writeText(messageText);
+    copyIcon.innerText = "done";
+    setTimeout(() => copyIcon.innerText = "content_copy", 1000);
 }
 
 const handleOutgoingChat = () => {
